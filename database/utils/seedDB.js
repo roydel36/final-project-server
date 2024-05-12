@@ -31,7 +31,7 @@ const seedDB = async () => {
 	
 	// Create a new student for a campus
 	const dummy_student = await Student.create({
-		firstname: "Joe",
+	  firstname: "Joe",
       lastname: "Smith",
 	  email: "joe@example.com", // Add email for the student
       imageUrl: "https://static.wikia.nocookie.net/dragonball/images/6/63/Survival_Arc_Android_17_%281%29.jpg/revision/latest/scale-to-width-down/609?cb=20170417164025", // Add imageUrl for the student

@@ -11,7 +11,6 @@ const Student = db.define("student", {
     type: Sequelize.STRING,
     allowNull: false
   },
-
   lastname: {
     type: Sequelize.STRING,
     allowNull: false
@@ -21,23 +20,19 @@ const Student = db.define("student", {
     type: Sequelize.STRING,
     allowNull: false
   },
-  imageURL: {
-    type: Sequelize.STRING,
+  imageUrl: {
+    type: Sequelize.TEXT('long'),
     allowNull: true,
     defaultValue: 'https://practicaltyping.com/wp-content/uploads/2021/10/android17.jpg' // Default value for imageUrl
   },
   gpa: {
-    type: Sequelize.DECIMAL(3, 1), 
-    allowNull: true, 
+    type: Sequelize.FLOAT, 
     validate: {
       min: 0.0,
       max: 4.0 
     }
-  },
-  //will be used to relate students and campuses
-  campusID: {
-    type:Sequelize.INTEGER
   }
+  //will be used to relate students and campuses
 });
 
 
