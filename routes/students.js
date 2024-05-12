@@ -24,6 +24,25 @@ const ash = require('express-async-handler');
 //   }
 // });
 
+//same logic as campus, acquire student through id 
+router.get('/student/:id', ash(async (req,res) => {
+    //id is obtained
+   const { id } = req.params;
+
+   //using the ID, will grab the student and the campus they belong to
+   let single_student = await Student.findOne({
+     where: { id },
+     include: [Campus]
+   });
+ 
+   //error handling on instances if student is found and when isnt
+   if (single_student) {
+     res.status(200).json({ success: single_student });
+   } else {
+     res.status(404).send('Student not found');
+   }
+}));
+
 /* GET ALL STUDENTS: async/await using express-async-handler (ash) */
 // Automatically catches any error and sends to Routing Error-Handling Middleware (app.js)
 // It is the same as using "try-catch" and calling next(error)

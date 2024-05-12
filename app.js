@@ -13,6 +13,7 @@ const seedDB = require('./database/utils/seedDB');  // Import function to seed d
 const db = require('./database');
 
 
+
 /* MODEL SYNCHRONIZATION & DATABASE SEEDING */
 // Set up sync and seed process
 const syncDatabase = async () => {

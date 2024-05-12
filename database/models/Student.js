@@ -34,6 +34,10 @@ const Student = db.define("student", {
       max: 4.0 
     }
   },
+  //will be used to relate students and campuses
+  campusID: {
+    type:Sequelize.INTEGER
+  }
 });
 
 

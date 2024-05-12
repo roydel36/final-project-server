@@ -24,6 +24,23 @@ const ash = require('express-async-handler');
 //   }
 // });
 
+//this method grabs the campus using the campus id as the parameter
+router.get('/campus/:id', ash(async (req, res) => {
+  //grabs id
+  const { id } = req.params;
+  //grab student and campus with that id
+  let single_campus = await Campus.findOne({
+    where: { id },
+    include: [Student]
+  });
+  //take care of instances where campus found and not found
+  if (single_campus) {
+    res.status(200).json({ success: single_campus });
+  } else {
+    res.status(404).send('Campus not found'); 
+  }
+}));
+
 /* GET ALL CAMPUSES */
 router.get('/', ash(async(req, res) => {
   let campuses = await Campus.findAll({include: [Student]});  // Get all campuses and their associated students
