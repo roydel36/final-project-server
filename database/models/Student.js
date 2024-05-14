@@ -20,7 +20,7 @@ const Student = db.define("student", {
     type: Sequelize.STRING,
     allowNull: false
   },
-  imageUrl: {
+  imageurl: {
     type: Sequelize.TEXT('long'),
     allowNull: true,
     defaultValue: 'https://practicaltyping.com/wp-content/uploads/2021/10/android17.jpg' // Default value for imageUrl
