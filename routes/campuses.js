@@ -24,22 +24,15 @@ const ash = require('express-async-handler');
 //   }
 // });
 
-//this method grabs the campus using the campus id as the parameter
-router.get('/campus/:id', ash(async (req, res) => {
-  //grabs id
-  const { id } = req.params;
-  //grab student and campus with that id
-  let single_campus = await Campus.findOne({
-    where: { id },
-    include: [Student]
-  });
-  //take care of instances where campus found and not found
-  if (single_campus) {
-    res.status(200).json({ success: single_campus });
-  } else {
-    res.status(404).send('Campus not found'); 
-  }
-}));
+//put request to add a new student but also update exisitng student
+router.put('/campusId/assigncampus', ash(async(req,res) => {
+  //based off student's campus id that student is assigned to the campus with that id
+  const campusId = req.params.campusId;
+  let addingStudent = await Student.create(req.body);
+  await addingStudent.setCampus(campusId);
+  //mesage to determine if succesful
+  res.status(200).json(addingStudent);
+}))
 
 /* GET ALL CAMPUSES */
 router.get('/', ash(async(req, res) => {
@@ -81,6 +74,7 @@ router.put('/:id', ash(async(req, res) => {
   let campus = await Campus.findByPk(req.params.id, {include: [Student]});  // Get the campus and its associated students
   res.status(201).json(campus);  // Status code 201 Created - successful creation of a resource
 }))
+
 
 // Export router, so that it can be imported to construct the apiRouter (app.js)
 module.exports = router;

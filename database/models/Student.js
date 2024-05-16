@@ -18,23 +18,29 @@ const Student = db.define("student", {
   //added below
   email: {
     type: Sequelize.STRING,
-    allowNull: false
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+      isEmail: true,
+    },
   },
   imageurl: {
-    type: Sequelize.TEXT('long'),
+    type: Sequelize.STRING,
     allowNull: true,
-    defaultValue: 'https://practicaltyping.com/wp-content/uploads/2021/10/android17.jpg' // Default value for imageUrl
   },
+  //MIN specifiied to 4, max specified to 4
   gpa: {
-    type: Sequelize.FLOAT, 
+    type: Sequelize.DECIMAL(3,1), 
+    allowNull:true,
     validate: {
       min: 0.0,
       max: 4.0 
     }
   },
   //will be used to relate students and campuses
-  campusid: {
+  campusId: {
     type: Sequelize.INTEGER,
+    allowNull:true
   }
 });
 
