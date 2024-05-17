@@ -27,6 +27,27 @@ const ash = require('express-async-handler');
 /* GET ALL STUDENTS: async/await using express-async-handler (ash) */
 // Automatically catches any error and sends to Routing Error-Handling Middleware (app.js)
 // It is the same as using "try-catch" and calling next(error)
+
+router.get('/student/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    let student_info = await Student.findOne(
+      {
+        where: {
+          id: id
+        },
+        include: [Campus]
+      }
+    );
+    res.status(200).json({
+      success: student_info
+    });
+  }
+  catch (error) {
+    res.status(400).json(error);
+  }
+});
+
 router.get('/', ash(async(req, res) => {
   let students = await Student.findAll({include: [Campus]});
   res.status(200).json(students);  // Status code 200 OK - request succeeded

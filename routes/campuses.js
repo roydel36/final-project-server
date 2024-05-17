@@ -24,15 +24,25 @@ const ash = require('express-async-handler');
 //   }
 // });
 
-//put request to add a new student but also update exisitng student
-router.put('/campusId/assigncampus', ash(async(req,res) => {
-  //based off student's campus id that student is assigned to the campus with that id
-  const campusId = req.params.campusId;
-  let addingStudent = await Student.create(req.body);
-  await addingStudent.setCampus(campusId);
-  //mesage to determine if succesful
-  res.status(200).json(addingStudent);
-}))
+router.get('/campus/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    let single_campus = await Campus.findOne(
+      {
+        where: {
+          id: id
+        },
+        include: [Student]
+      }
+    );
+    res.status(200).json({
+      success: single_campus
+    });
+  }
+  catch (error) {
+    res.status(400).json(error);
+  }
+});
 
 /* GET ALL CAMPUSES */
 router.get('/', ash(async(req, res) => {
