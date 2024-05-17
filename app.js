@@ -12,8 +12,6 @@ const seedDB = require('./database/utils/seedDB');  // Import function to seed d
 // Import database instance for database connection (including database name, username, and password)
 const db = require('./database');
 
-
-
 /* MODEL SYNCHRONIZATION & DATABASE SEEDING */
 // Set up sync and seed process
 const syncDatabase = async () => {
@@ -83,5 +81,5 @@ bootApp();
 
 /* ACTIVATE THE SERVER PORT */
 // Set up express application to use port 5000 as the access point for the server application.
-const PORT = 3000;  // Server application access point port number
+const PORT = 5001;  // Server application access point port number
 app.listen(PORT, console.log(`Server started on ${PORT}`));

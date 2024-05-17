@@ -22,9 +22,9 @@ const Student = db.define("student", {
     allowNull: false,
   },
 
-  imageurl: {
+  imageURL: {
     type: Sequelize.TEXT('long'),
-    defaultValue: ""
+    defaultValue: "../../images/def.jpeg"
   },
   
   gpa: {
@@ -35,7 +35,7 @@ const Student = db.define("student", {
     } 
   },
   
-  campusId: {
+  campusID: {
     type: Sequelize.INTEGER,
   }
 });

@@ -22,9 +22,9 @@ const Campus = db.define("campus", {
     type: Sequelize.STRING,
   },
 
-  imageurl: {
+  imageURL: {
     type: Sequelize.STRING,
-    defaultValue: 'https://static.wikia.nocookie.net/spongebob/images/5/58/Kamp-Koral-Patrick.png/revision/latest/scale-to-width/360?cb=20220724103202'
+    defaultValue: ""
   }
 });
 
